@@ -6,4 +6,7 @@
   dependencyDashboard: true,
   automerge: true,
   semanticCommits: "enabled",
+  pip_requirements: {
+    enabled: false,
+  },
 }
