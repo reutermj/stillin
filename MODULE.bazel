@@ -3,9 +3,12 @@ module(
     version = "0.0.1",
 )
 
-# Python toolchain
+# Bazel deps
 bazel_dep(name = "rules_python", version = "1.7.0")
+bazel_dep(name = "aspect_rules_py", version = "1.6.6")
+bazel_dep(name = "rules_uv", version = "0.89.2")
 
+# Toolchain
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(
     python_version = "3.13",
@@ -13,13 +16,7 @@ python.toolchain(
 )
 use_repo(python, "python_3_13")
 
-# Python rules from Aspect
-bazel_dep(name = "aspect_rules_py", version = "1.6.6")
-
-# UV for requirements compilation
-bazel_dep(name = "rules_uv", version = "0.89.2")
-
-# pip dependencies
+# Pip deps
 pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 pip.parse(
     hub_name = "pip",

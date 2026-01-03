@@ -1,5 +1,9 @@
 # Stillin Project
 
+## Commit Messages
+
+**IMPORTANT**: Before creating any commit message, ALWAYS read [.claude/commit-message-guidelines.md](.claude/commit-message-guidelines.md) and follow its format exactly.
+
 ## Build System
 
 This project uses Bazel with Bzlmod for dependency management. A hermetic Bazel is provided at `./bazel`.
