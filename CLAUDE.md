@@ -8,17 +8,10 @@
 
 This project uses Bazel with Bzlmod for dependency management. A hermetic Bazel is provided at `./bazel`.
 
-### Dependencies
-
-- **rules_python** (1.7.0) - Python toolchain
-- **aspect_rules_py** (1.6.6) - Python build rules (py_binary, py_library, py_test)
-- **rules_uv** (0.89.2) - UV-based requirements compilation
-
 ### Python Requirements
 
 - Add dependencies to `requirements.in`
 - Run `./bazel run //:generate_requirements_txt` to compile `requirements.txt`
-- The `generate_requirements_txt_test` target automatically verifies requirements.txt is up-to-date
 
 ### Writing Python Targets
 
@@ -30,13 +23,13 @@ load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library", "py_test")
 py_library(
     name = "mylib",
     srcs = ["mylib.py"],
-    deps = ["@pip//some_package"],
+    deps = ["@pip//some_package"], # Using a pip dependency
 )
 
 py_binary(
     name = "myapp",
     srcs = ["main.py"],
-    deps = [":mylib"],
+    deps = [":mylib"], # Using a bazel dependency
 )
 
 py_test(
@@ -46,19 +39,9 @@ py_test(
 )
 ```
 
-### Using pip Dependencies
-
-Import pip packages using `@pip//<package_name>`:
-
-```starlark
-deps = [
-    "@pip//gpiozero",
-]
-```
-
 ### GPIO Access
 
-The `.bazelrc` configures `--spawn_strategy=local` to disable Bazel's sandbox. This is required because GPIO access needs `/dev/gpiomem` which isn't available inside the sandbox.
+This project uses **gpiozero** for GPIO control. The `.bazelrc` configures `--spawn_strategy=local` to disable Bazel's sandbox, which is required because GPIO access needs `/dev/gpiomem` which isn't available inside the sandbox.
 
 ### Common Commands
 
