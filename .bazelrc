@@ -1,0 +1,3 @@
+# Disable sandbox to allow GPIO access.
+# GPIO requires /dev/gpiomem which isn't available inside Bazel's sandbox.
+common --spawn_strategy=local
