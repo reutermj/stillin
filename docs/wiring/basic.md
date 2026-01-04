@@ -19,14 +19,13 @@ This guide covers the simplest wiring configuration to control an ECO-WORTHY 12V
 | Black | Ground |
 | Yellow | RPWM signal (extend) |
 | Orange | LPWM signal (retract) |
-| Blue | Motor connections |
 
 ## What You'll Need
 
 - 2x Dupont jumper wires (female-to-female): Yellow, Orange
 - 2x Dupont jumper wires (female-to-female): Black (for ground)
 - 2x Short jumper wires or dupont wires: Red (for enable pins)
-- Hookup wire (cut to length): Red, Black, Blue
+- Hookup wire (cut to length): Red, Black
 
 ## Wiring Overview
 
