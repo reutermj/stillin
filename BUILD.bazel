@@ -1,8 +1,38 @@
+load("@buildifier_prebuilt//:rules.bzl", "buildifier")
 load("@rules_uv//uv:pip.bzl", "pip_compile")
+load("@rules_uv//uv:venv.bzl", "create_venv")
 
-# Compile requirements.in -> requirements.txt using uv
+# ./bazel run :create_venv
+create_venv(
+    name = "create_venv",
+    requirements_txt = "//:requirements.txt",
+)
+
+# ./bazel run :generate_requirements_txt
 pip_compile(
     name = "generate_requirements_txt",
     requirements_in = "//:requirements.in",
     requirements_txt = "//:requirements.txt",
+)
+
+# ./bazel run :buildifier.check
+buildifier(
+    name = "buildifier.check",
+    exclude_patterns = [
+        "./.git/*",
+    ],
+    lint_mode = "warn",
+    mode = "check",
+    visibility = ["//visibility:private"],
+)
+
+# ./bazel run :buildifier.fix
+buildifier(
+    name = "buildifier.fix",
+    exclude_patterns = [
+        "./.git/*",
+    ],
+    lint_mode = "warn",
+    mode = "fix",
+    visibility = ["//visibility:private"],
 )
