@@ -1,10 +1,19 @@
-load("@aspect_rules_py//py:defs.bzl", "py_binary")
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_library(
+    name = "linear_actuator",
+    srcs = ["linear_actuator.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@pip//gpiozero",
+        "@pip//rpi_lgpio",
+    ],
+)
 
 py_binary(
     name = "actuator_cycle",
     srcs = ["actuator_cycle.py"],
     deps = [
-        "@pip//gpiozero",
-        "@pip//rpi_lgpio",
+        ":linear_actuator",
     ],
 )
