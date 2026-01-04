@@ -1,0 +1,7 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary")
+
+py_binary(
+    name = "actuator_cycle",
+    srcs = ["actuator_cycle.py"],
+    deps = ["@pip//gpiozero"],
+)
