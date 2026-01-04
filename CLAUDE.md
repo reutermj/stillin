@@ -1,5 +1,13 @@
 # Stillin Project
 
+## System Dependencies
+
+Some Python packages with C extensions require system libraries to build. Install these before running Bazel:
+
+```bash
+sudo apt install swig clang liblgpio-dev
+```
+
 ## Commit Messages
 
 **IMPORTANT**: Before creating any commit message, ALWAYS read [.claude/commit-message-guidelines.md](.claude/commit-message-guidelines.md) and follow its format exactly.
